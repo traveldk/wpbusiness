@@ -1,15 +1,20 @@
 package az.traveldk.wpbusiness.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 @RequestMapping
 @RestController
 public class WebHookController {
 
-    @GetMapping("test")
-    public String webHookTest(){
-        return "Hello from Webhook";
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("healthCheck")
+    public void healthCheck() {
+    }
+
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    @PostMapping("webhook")
+    public void webhook(Object request) {
+        System.out.println(request);
     }
 }
